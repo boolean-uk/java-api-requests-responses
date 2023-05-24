@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("students")
@@ -22,8 +23,50 @@ public class Students {
         return student;
     }
 
+    @PutMapping("/{firstName}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Student update(@RequestBody Student student, @PathVariable (name="firstName") String firstName) {
+
+
+        for (Student stu : this.students) {
+            if (stu.getFirstName().equals(firstName)) {
+                stu.setFirstName(student.getFirstName());
+                stu.setLastName(student.getLastName());
+                return stu;
+            }
+        }
+
+        return null;
+    }
+
     @GetMapping
     public List<Student> getAll() {
         return this.students;
+    }
+
+    @GetMapping("/{firstName}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Student getStudent(@PathVariable (name="firstName") String firstName) {
+
+        Optional<Student> optionalStudent = students.stream()
+                .filter(student -> student.getFirstName().equals(firstName))
+                .findFirst();
+
+        return optionalStudent.orElse(null);
+
+    }
+
+    @DeleteMapping("/{firstName}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Student deleteStudent(@PathVariable (name="firstName") String firstName) {
+
+        for (Student stu : this.students) {
+            if (stu.getFirstName().equals(firstName)) {
+                this.students.remove(stu);
+                return stu;
+            }
+        }
+
+        return null;
     }
 }
