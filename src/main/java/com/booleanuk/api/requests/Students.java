@@ -22,11 +22,13 @@ public class Students {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<Student> getAll() {
         return this.students;
     }
 
     @GetMapping("/{name}")
+    @ResponseStatus(HttpStatus.OK)
     public Student getSpecificStudent(@PathVariable (name = "name") String name){
         for(Student student:this.students){
             if(student.getFirstName().equalsIgnoreCase(name)){
@@ -36,6 +38,7 @@ public class Students {
         return null;
     }
     @PutMapping("/{name}")
+    @ResponseStatus(HttpStatus.CREATED)
     public Student update(@RequestBody Student student, @PathVariable (name = "name") String name){
         for(Student temp :this.students){
             if(temp.getFirstName().equalsIgnoreCase(name)){
@@ -47,6 +50,7 @@ public class Students {
         return null;
     }
     @DeleteMapping("/{name}")
+    @ResponseStatus(HttpStatus.OK)
     public Student delete(@PathVariable (name = "name") String name){
         for(Student student:this.students){
             if(student.getFirstName().equalsIgnoreCase(name)){

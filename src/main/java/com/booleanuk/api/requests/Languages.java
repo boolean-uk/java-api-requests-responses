@@ -18,7 +18,7 @@ public class Languages {
 
     private Language getLanguage(String name){
         for(Language language : languages)
-            if(language.getName().equals(name)) return language;
+            if(language.getName().equalsIgnoreCase(name)) return language;
 
         return null;
     }
