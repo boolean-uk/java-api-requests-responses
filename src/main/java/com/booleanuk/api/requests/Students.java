@@ -1,6 +1,7 @@
 package com.booleanuk.api.requests;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -26,8 +27,6 @@ public class Students {
     @PutMapping("/{firstName}")
     @ResponseStatus(HttpStatus.CREATED)
     public Student update(@RequestBody Student student, @PathVariable (name="firstName") String firstName) {
-
-
         for (Student stu : this.students) {
             if (stu.getFirstName().equals(firstName)) {
                 stu.setFirstName(student.getFirstName());
@@ -45,7 +44,6 @@ public class Students {
     }
 
     @GetMapping("/{firstName}")
-    @ResponseStatus(HttpStatus.CREATED)
     public Student getStudent(@PathVariable (name="firstName") String firstName) {
 
         Optional<Student> optionalStudent = students.stream()
@@ -53,11 +51,9 @@ public class Students {
                 .findFirst();
 
         return optionalStudent.orElse(null);
-
     }
 
     @DeleteMapping("/{firstName}")
-    @ResponseStatus(HttpStatus.CREATED)
     public Student deleteStudent(@PathVariable (name="firstName") String firstName) {
 
         for (Student stu : this.students) {
