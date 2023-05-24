@@ -22,7 +22,7 @@ public class Students {
     public ResponseEntity<Student> create(@RequestBody Student student) {
         if (student.getFirstName() != null && student.getLastName() != null) {
             this.students.add(student);
-            return ResponseEntity.ok().body(student);
+            return ResponseEntity.status(HttpStatus.CREATED).body(student);
         }
         return ResponseEntity.badRequest().body(null);
     }
@@ -48,7 +48,7 @@ public class Students {
             if(newStudent.getFirstName() != null && newStudent.getLastName() != null) {
                 student.get().setFirstName(newStudent.getFirstName());
                 student.get().setLastName(newStudent.getLastName());
-                return ResponseEntity.ok().body(student.get());
+                return ResponseEntity.status(HttpStatus.CREATED).body(student.get());
             }
         }
         return ResponseEntity.badRequest().body(null);
