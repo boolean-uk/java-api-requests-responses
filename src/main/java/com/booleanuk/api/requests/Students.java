@@ -29,8 +29,7 @@ public class Students {
     @GetMapping("/{firstName}")
     public Student getOne(@PathVariable(name = "firstName") String firstName){
 
-            for (Student s :this.students) {
-
+            for (Student s : this.students) {
                 if (s.getFirstName().equals(firstName)){
                    return s;
                 }
