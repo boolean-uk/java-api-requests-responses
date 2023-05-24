@@ -3,7 +3,7 @@ package com.booleanuk.api.requests;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +33,7 @@ public class Languages {
     @ResponseStatus(HttpStatus.CREATED)
     public Language postLanguage(@RequestBody Language language) {
         this.languages.add(language);
-        return this.languages.get(this.languages.size() - 1);
+        return this.languages.get(this.languages.indexOf(language));
     }
 
     @PutMapping("{name}")

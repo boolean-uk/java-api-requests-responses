@@ -19,7 +19,7 @@ public class Students {
     public Student create(@RequestBody Student student) {
         this.students.add(student);
 
-        return student;
+        return this.students.get(this.students.indexOf(student));
     }
 
     @GetMapping
