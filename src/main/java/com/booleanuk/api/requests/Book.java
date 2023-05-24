@@ -1,13 +1,13 @@
 package com.booleanuk.api.requests;
 
 public class Book {
-    private int id;
+    private String id;
     private String title;
     private int numPages;
     private String author;
     private String genre;
 
-    public Book (int id, String title, Integer numPages, String author, String genre){
+    public Book (String id, String title, Integer numPages, String author, String genre){
         this.id = id;
         this.title = title;
         this.numPages = numPages;
@@ -15,11 +15,11 @@ public class Book {
         this.genre = genre;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
