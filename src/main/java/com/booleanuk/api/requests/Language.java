@@ -5,6 +5,14 @@ public class Language {
 
     public Language(String name) {
         this.name = name;
+
+    }
+    public Language() {
+            this.name = "unknown";
+        }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {
