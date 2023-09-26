@@ -18,7 +18,6 @@ public class Students {
     @ResponseStatus(HttpStatus.CREATED)
     public Student create(@RequestBody Student student) {
         this.students.add(student);
-
         return student;
     }
 
@@ -29,10 +28,14 @@ public class Students {
 
     @GetMapping("/{firstName}")
     public Student getOne(@PathVariable (name = "firstName") String firstName){
+        int index = -1;
         for (Student student: students) {
             if (student.getFirstName().equalsIgnoreCase(firstName)) {
-                return student;
+                index = this.students.indexOf(student);
             }
+        }
+        if (index > 0) {
+            return this.students.get(index);
         }
         return null;
     }
