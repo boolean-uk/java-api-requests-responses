@@ -11,10 +11,7 @@ public class Book {
     public Book() {
         this.id = nextId;
         nextId++;
-        this.title = title;
-        this.numPages = numPages;
-        this.author = author;
-        this.genre = genre;
+
     }
     public Book(String title,int id , int numPages, String author, String genre) {
         this.id = nextId;
