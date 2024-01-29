@@ -32,4 +32,18 @@ public class Books {
     public Book getOne(@PathVariable(name = "id") int id) {
         return this.books.stream().filter(x->x.getId() == id).findFirst().orElse(null);
     }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Book update(@PathVariable(name = "id") int id, @RequestBody Book reqBook) {
+        Book book = this.books.stream().filter(x->x.getId() == id).findFirst().orElse(null);
+        if (book != null) {
+            book.setTitle(reqBook.getTitle());
+            book.setNumPages(reqBook.getNumPages());
+            book.setAuthor(reqBook.getAuthor());
+            book.setGenre(reqBook.getGenre());
+            return book;
+        }
+        return null;
+    }
 }
