@@ -40,4 +40,16 @@ public class Students {
         }
         return null;
     }
+
+    @PutMapping("/{firstName}")
+    public ResponseEntity<Student> update(@PathVariable(name = "firstName") String firstName, @RequestBody Student reqStudent) {
+        for (Student student : this.students) {
+            if (student.getFirstName().equals(firstName)) {
+                student.setFirstName(reqStudent.getFirstName());
+                student.setLastName(reqStudent.getLastName());
+                return ResponseEntity.ok(student);
+            }
+        }
+        return null;
+    }
 }
