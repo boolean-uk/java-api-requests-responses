@@ -26,20 +26,8 @@ public class Students {
     public List<Student> getAll() {
         return this.students;
     }
-//    Why is this not wokring?
-//    curl -X 'GET' \
-//            'http://localhost:4000/students/Dave' \
-//            -H 'accept: application/json'
-//    {
-//        "timestamp": "2024-01-29T14:55:12.262+00:00",
-//            "status": 500,
-//            "error": "Internal Server Error",
-//            "message": "Required path variable 'firstName' is not present.",
-//            "path": "/students/Dave"
-//    }
-//
-//    for this function?
-    @GetMapping("/{firstname}")
+
+    @GetMapping("/{firstName}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Student getStudent(@PathVariable String firstName){
         for (Student student1: students){
@@ -63,8 +51,19 @@ public class Students {
         return ResponseEntity.notFound().build();
     }
     @DeleteMapping("/{firstName}")
-    public List<Student> deleteStudent(@PathVariable String firstName){
-        this.students.remove(firstName);
+    public List<Student> deleteStudent(@PathVariable String firstName) {
+        Student studentToRemove = null;
+        for (Student student : students) {
+            if (student.getFirstName().equals(firstName)) {
+                studentToRemove = student;
+                break;
+            }
+        }
+        if (studentToRemove != null) {
+            this.students.remove(studentToRemove);
+        }
+
         return this.students;
     }
+
 }

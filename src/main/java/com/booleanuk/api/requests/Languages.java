@@ -48,8 +48,18 @@ public class Languages {
         return null;
     }
     @DeleteMapping("/{name}")
-    public List<Language> deleteStudent(@PathVariable String name){
-        this.languages.remove(name);
+    public List<Language> deleteStudent(@PathVariable String name) {
+        Language languageToRemove = null;
+        for (Language language : languages) {
+            if (language.getName().equals(name)) {
+                languageToRemove = language;
+                break;
+            }
+        }
+        if (languageToRemove != null) {
+            this.languages.remove(languageToRemove);
+        }
+
         return this.languages;
     }
 
