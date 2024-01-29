@@ -23,12 +23,9 @@ public class Languages {
     @GetMapping("/{name}")
     public Language getSpecificLanguage(@PathVariable String name) {
         for (Language l : this.languages)
-        {
-            if(l.getName().equals(name))
-            {
+            if (l.getName().equals(name)) {
                 return l;
             }
-        }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
@@ -58,13 +55,10 @@ public class Languages {
     @DeleteMapping("/{name}")
     public Language delete(@PathVariable String name) {
         for(Language l : this.languages)
-        {
-            if(l.getName().equals(name))
-            {
+            if (l.getName().equals(name)) {
                 this.languages.remove(l);
                 return l;
             }
-        }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 }
