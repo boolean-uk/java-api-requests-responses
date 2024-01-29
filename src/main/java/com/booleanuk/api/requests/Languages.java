@@ -13,10 +13,7 @@ public class Languages {
     private List<Language> languages;
 
     public Languages() {
-        this.languages = new ArrayList<>(){{
-            add(new Language("Java"));
-            add(new Language("C#"));
-        }};
+        this.languages = new ArrayList<>();
     }
 
     @PostMapping

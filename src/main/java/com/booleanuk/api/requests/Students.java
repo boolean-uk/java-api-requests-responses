@@ -14,8 +14,6 @@ public class Students {
 
     public Students() {
         this.students = new ArrayList<>();
-        this.students.add(new Student("Nathan", "King"));
-        this.students.add(new Student("Dave", "Ames"));
     }
 
     @PostMapping
