@@ -15,7 +15,7 @@ class Student {
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public String getLastName() {
@@ -31,6 +31,6 @@ class Student {
     }
 
     public String getUniqueID() {
-        return uniqueID;
+        return this.uniqueID;
     }
 }
