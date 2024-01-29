@@ -19,7 +19,7 @@ public class LanguageController {
     public Language createLanguage(@RequestBody Language language){
         languages.add(language);
 
-        return languages.get(languages.indexOf(language));
+        return language;
     }
 
     @GetMapping
@@ -34,12 +34,26 @@ public class LanguageController {
 
     @PutMapping("/{name}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Student updateLanguage(@PathVariable String name, @RequestBody Language updatedLanguage){
+    public Language updateLanguage(@PathVariable String name, @RequestBody Language updatedLanguage){
         Language language = getLanguage(name);
 
         if (language != null){
-            int index
-            languages.get()
+            int index = languages.indexOf(language);
+            languages.get(index).setName(updatedLanguage.getName());
+
+            return languages.get(index);
+        }
+        return null;
+    }
+
+    @DeleteMapping("/{name}")
+    public Language deleteLanguage(@PathVariable String name){
+        Language language = getLanguage(name);
+
+        if (language != null){
+            int index = languages.indexOf(language);
+
+            return languages.remove(index);
         }
         return null;
     }
