@@ -26,4 +26,9 @@ public class Languages {
 
         return ResponseEntity.ok(language);
     }
+
+    @GetMapping
+    public List<Language> getAll() {
+        return this.languages;
+    }
 }
