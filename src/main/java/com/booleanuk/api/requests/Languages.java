@@ -31,4 +31,9 @@ public class Languages {
     public List<Language> getAll() {
         return this.languages;
     }
+
+    @GetMapping("/{name}")
+    public ResponseEntity<Language> getOne(@PathVariable(name = "name") String name) {
+        return ResponseEntity.ok(this.languages.stream().filter(x->x.getName().equals(name)).findFirst().orElse(null));
+    }
 }
