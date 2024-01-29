@@ -31,32 +31,26 @@ public class Books {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Book getOne(@PathVariable(name = "id") int id) {
-        return this.books.stream().filter(x->x.getId() == id).findFirst().orElse(null);
+        return this.books.stream().filter(x->x.getId() == id).findFirst().orElseThrow(BookNotFoundException::new);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Book update(@PathVariable(name = "id") int id, @RequestBody Book reqBook) {
-        Book book = this.books.stream().filter(x->x.getId() == id).findFirst().orElse(null);
-        if (book != null) {
-            book.setTitle(reqBook.getTitle());
-            book.setNumPages(reqBook.getNumPages());
-            book.setAuthor(reqBook.getAuthor());
-            book.setGenre(reqBook.getGenre());
-            return book;
-        }
-        return null;
+        Book book = this.books.stream().filter(x->x.getId() == id).findFirst().orElseThrow(BookNotFoundException::new);
+        book.setTitle(reqBook.getTitle());
+        book.setNumPages(reqBook.getNumPages());
+        book.setAuthor(reqBook.getAuthor());
+        book.setGenre(reqBook.getGenre());
+        return book;
+
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Book delete(@PathVariable(name = "id") int id) {
-        Book book = this.books.stream().filter(x->x.getId() == id).findFirst().orElse(null);
-        if (book != null) {
-            this.books.remove(book);
-            return book;
-        }
-
-        return null;
+        Book book = this.books.stream().filter(x->x.getId() == id).findFirst().orElseThrow(BookNotFoundException::new);
+        this.books.remove(book);
+        return book;
     }
 }
