@@ -20,37 +20,42 @@ public class Languages {
     }
 
     @PostMapping
-    public ResponseEntity<Language> create(@RequestBody Language language) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Language create(@RequestBody Language language) {
         this.languages.add(language);
-        return new ResponseEntity<>(language, HttpStatus.CREATED);
+        return language;
     }
 
     @GetMapping
-    public ResponseEntity<List<Language>> getAll() {
-        return ResponseEntity.ok(this.languages);
+    @ResponseStatus(HttpStatus.OK)
+    public List<Language> getAll() {
+        return this.languages;
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<Language> getOne(@PathVariable(name = "name") String name) {
-        return ResponseEntity.ok(this.languages.stream().filter(x->x.getName().equals(name)).findFirst().orElse(null));
+    @ResponseStatus(HttpStatus.OK)
+    public Language getOne(@PathVariable(name = "name") String name) {
+        return this.languages.stream().filter(x->x.getName().equals(name)).findFirst().orElse(null);
     }
 
     @PutMapping("/{name}")
-    public ResponseEntity<Language> update(@PathVariable(name = "name") String name, @RequestBody Language reqLanguage) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Language update(@PathVariable(name = "name") String name, @RequestBody Language reqLanguage) {
         Language language = this.languages.stream().filter(x->x.getName().equals(name)).findFirst().orElse(null);
         if (language != null) {
             language.setName(reqLanguage.getName());
-            return new ResponseEntity<>(language, HttpStatus.CREATED);
+            return language;
         }
         return null;
     }
 
     @DeleteMapping("/{name}")
-    public ResponseEntity<Language> delete(@PathVariable(name = "name") String name) {
+    @ResponseStatus(HttpStatus.OK)
+    public Language delete(@PathVariable(name = "name") String name) {
         Language language = this.languages.stream().filter(x->x.getName().equals(name)).findFirst().orElse(null);
         if (language != null) {
             this.languages.remove(language);
-            return ResponseEntity.ok(language);
+            return language;
         }
         return null;
     }

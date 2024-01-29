@@ -32,33 +32,36 @@ public class Students {
     }
 
     @GetMapping("/{firstName}")
-    public ResponseEntity<Student> getOne(@PathVariable(name = "firstName") String firstName) {
+    @ResponseStatus(HttpStatus.OK)
+    public Student getOne(@PathVariable(name = "firstName") String firstName) {
         for (Student student : this.students) {
             if (student.getFirstName().equals(firstName)) {
-                return ResponseEntity.ok(student);
+                return student;
             }
         }
         return null;
     }
 
     @PutMapping("/{firstName}")
-    public ResponseEntity<Student> update(@PathVariable(name = "firstName") String firstName, @RequestBody Student reqStudent) {
+    @ResponseStatus(HttpStatus.OK)
+    public Student update(@PathVariable(name = "firstName") String firstName, @RequestBody Student reqStudent) {
         for (Student student : this.students) {
             if (student.getFirstName().equals(firstName)) {
                 student.setFirstName(reqStudent.getFirstName());
                 student.setLastName(reqStudent.getLastName());
-                return new ResponseEntity<>(student, HttpStatus.CREATED);
+                return student;
             }
         }
         return null;
     }
 
     @DeleteMapping("/{firstName}")
-    public ResponseEntity<Student> delete(@PathVariable(name = "firstName") String firstName) {
+    @ResponseStatus(HttpStatus.OK)
+    public Student delete(@PathVariable(name = "firstName") String firstName) {
         for (Student student : this.students) {
             if (student.getFirstName().equals(firstName)) {
                 this.students.remove(student);
-                return ResponseEntity.ok(student);
+                return student;
             }
         }
         return null;
