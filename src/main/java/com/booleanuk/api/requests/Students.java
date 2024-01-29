@@ -26,4 +26,13 @@ public class Students {
     public List<Student> getAll() {
         return this.students;
     }
+
+
+
+    @GetMapping("/{firstName}")
+    public Student getStudentByFirstName(@PathVariable String firstName) {
+
+
+
+    }
 }
