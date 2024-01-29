@@ -56,7 +56,7 @@ public class Students {
         for (Student student : students){
             if (student.getFirstName().equals(firstName)){
                 int index = students.indexOf(student);
-                this.students.remove(student);
+                return this.students.remove(index);
             }
         }
         return null;
