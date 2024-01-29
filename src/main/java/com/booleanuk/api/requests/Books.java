@@ -46,4 +46,16 @@ public class Books {
         }
         return null;
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Book delete(@PathVariable(name = "id") int id) {
+        Book book = this.books.stream().filter(x->x.getId() == id).findFirst().orElse(null);
+        if (book != null) {
+            this.books.remove(book);
+            return book;
+        }
+
+        return null;
+    }
 }
