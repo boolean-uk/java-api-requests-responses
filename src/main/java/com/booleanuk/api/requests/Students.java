@@ -26,4 +26,34 @@ public class Students {
     public List<Student> getAll() {
         return this.students;
     }
+    @GetMapping("/{firstName}")
+    public Student getOne(@PathVariable ( name = "firstName" )String name) {
+        for (Student student: students) {
+            if (name.equals(student.getFirstName())){
+                return student;
+            }
+        }
+        return null;
+    }
+    @PutMapping("/firstName")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Student update(@PathVariable ( name = "firstName") String name, @RequestBody Student student) {
+        for (Student st : students) {
+            if (name.equals(st.getFirstName())) {
+                st.setFirstName(st.getFirstName());
+                st.setLastName(st.getLastName());
+                return st;
+            }
+        } return null;
+    }
+    @DeleteMapping("/{firstName}")
+    public Student delete(@PathVariable (name = "firstName") String name) {
+        for (Student student : students) {
+            if (name.equals(student.getFirstName())){
+                this.students.remove(student);
+                return student;
+            }
+        }
+        return null;
+    }
 }
