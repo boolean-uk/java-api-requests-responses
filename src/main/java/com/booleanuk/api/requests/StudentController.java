@@ -44,6 +44,7 @@ public class StudentController {
 
             return students.get(index);
         }
+
         return null;
     }
 
@@ -55,6 +56,7 @@ public class StudentController {
             int index = students.indexOf(student);
             return students.remove(index);
         }
+
         return null;
     }
 
@@ -64,6 +66,7 @@ public class StudentController {
                 return student;
             }
         }
+
         return null;
     }
 }

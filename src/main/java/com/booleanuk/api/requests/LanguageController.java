@@ -43,6 +43,7 @@ public class LanguageController {
 
             return languages.get(index);
         }
+
         return null;
     }
 
@@ -55,6 +56,7 @@ public class LanguageController {
 
             return languages.remove(index);
         }
+
         return null;
     }
 
@@ -64,6 +66,7 @@ public class LanguageController {
                 return language;
             }
         }
+
         return null;
     }
 }
