@@ -13,7 +13,7 @@ import java.util.List;
 public class Students {
     private ArrayList<Student> students;
 
-    public Students(){
+    public Students() {
         students = new ArrayList<>();
     }
 
@@ -30,9 +30,9 @@ public class Students {
     }
 
     @GetMapping("/{name}")
-    public Student getOneStudent(@PathVariable String name){
-        for(Student s : this.students){
-            if(s.getFirstName().equals(name)){
+    public Student getOneStudent(@PathVariable String name) {
+        for (Student s : this.students) {
+            if (s.getFirstName().equals(name)) {
                 return s;
             }
         }
@@ -41,27 +41,27 @@ public class Students {
 
     @PutMapping("/{name}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Student updateOneStudent(@PathVariable String name, @RequestBody Student student){
-        if(student.getFirstName() == null && student.getLastName() == null){
+    public Student updateOneStudent(@PathVariable String name, @RequestBody Student student) {
+        if (student.getFirstName() == null && student.getLastName() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        for(Student s : this.students){
-            if(s.getFirstName().equals(name)){
+        for (Student s : this.students) {
+            if (s.getFirstName().equals(name)) {
                 s.setFirstName(student.getFirstName());
                 s.setLastName(student.getLastName());
                 return s;
             }
         }
-        throw  new ResponseStatusException(HttpStatus.NOT_FOUND);
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{name}")
-    public Student deleteOneStudent(@PathVariable String name){
+    public Student deleteOneStudent(@PathVariable String name) {
 
         Iterator<Student> i = this.students.iterator();
-        while(i.hasNext()){
+        while (i.hasNext()) {
             Student student = i.next();
-            if(student.getFirstName().equals(name)){
+            if (student.getFirstName().equals(name)) {
                 i.remove();
                 return student;
             }
