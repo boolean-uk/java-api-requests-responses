@@ -1,7 +1,9 @@
 package com.booleanuk.api.requests;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ public class Students {
                 return student;
             }
         }
-        return null;
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found with first name: " + firstName);
     }
 
     @PutMapping("/{firstName}")
@@ -46,8 +48,9 @@ public class Students {
                 return s;
             }
         }
-        return null;
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found with first name: " + firstName);
     }
+
 
     @DeleteMapping("/{firstName}")
     public Student delete(@PathVariable String firstName) {
@@ -57,7 +60,7 @@ public class Students {
                 return student;
             }
         }
-        return null;
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found with first name: " + firstName);
     }
 
 }

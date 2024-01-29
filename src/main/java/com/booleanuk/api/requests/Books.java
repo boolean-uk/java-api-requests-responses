@@ -2,6 +2,7 @@ package com.booleanuk.api.requests;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class Books {
                 return book;
             }
         }
-        return null;
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book with id: " + id + " not found");
     }
 
     @PutMapping("/{id}")
@@ -49,7 +50,7 @@ public class Books {
                 return bookToChange;
             }
         }
-        return null;
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book with id: " + id + " not found");
     }
 
     @DeleteMapping("/{id}")
@@ -60,6 +61,6 @@ public class Books {
                 return bookToRemove;
             }
         }
-        return null;
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Book with id: " + id + " not found");
     }
 }
