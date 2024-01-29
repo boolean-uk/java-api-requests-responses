@@ -1,8 +1,16 @@
 package com.booleanuk.api.requests;
 
-class Student {
+public class Student {
     private String firstName;
     private String lastName;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
