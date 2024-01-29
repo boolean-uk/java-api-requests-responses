@@ -47,9 +47,10 @@ public class Students {
             if (student.getFirstName().equals(firstName)) {
                 student.setFirstName(reqStudent.getFirstName());
                 student.setLastName(reqStudent.getLastName());
-                return ResponseEntity.ok(student);
+                return new ResponseEntity<>(student, HttpStatus.CREATED);
             }
         }
         return null;
     }
+
 }
