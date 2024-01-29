@@ -46,4 +46,15 @@ public class Languages {
         }
         return null;
     }
+
+    @DeleteMapping("/{name}")
+    public ResponseEntity<Language> delete(@PathVariable(name = "name") String name) {
+        for (Language language : this.languages) {
+            if (language.getName().equals(name)) {
+                this.languages.remove(language);
+                return ResponseEntity.ok(language);
+            }
+        }
+        return null;
+    }
 }
