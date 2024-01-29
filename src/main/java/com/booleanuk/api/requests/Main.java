@@ -1,4 +1,4 @@
-package com.booleanuk.api;
+package com.booleanuk.api.requests;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
