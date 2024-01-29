@@ -53,4 +53,14 @@ public class Students {
         return null;
     }
 
+    @DeleteMapping("/{firstName}")
+    public ResponseEntity<Student> delete(@PathVariable(name = "firstName") String firstName) {
+        for (Student student : this.students) {
+            if (student.getFirstName().equals(firstName)) {
+                this.students.remove(student);
+                return ResponseEntity.ok(student);
+            }
+        }
+        return null;
+    }
 }
