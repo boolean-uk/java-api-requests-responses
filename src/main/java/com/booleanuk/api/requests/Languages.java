@@ -34,16 +34,17 @@ public class Languages {
 
     @PutMapping("/{name}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Language updateLanguage(@PathVariable String name, @RequestBody Student updatedStudent) {
+    public Language updateLanguage(@PathVariable String name, @RequestBody Language updatedLanguage) {
         for(Language language : this.languages) {
             if(language.getName().equalsIgnoreCase(name)) {
-                language.setName(updatedStudent.getFirstName());
+                language.setName(updatedLanguage.getName());
                 return language;
             }
         }
 
         return null;
     }
+
 
 
     @DeleteMapping("/{name}")
