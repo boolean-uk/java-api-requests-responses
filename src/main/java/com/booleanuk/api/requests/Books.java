@@ -21,14 +21,14 @@ public class Books {
         return book;
     }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<Book> getAll() {
         return this.books;
     }
 
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     public Book getBookByFirstName(@PathVariable (name = "id") int id) {
         for(Book book : this.books) {
@@ -40,7 +40,7 @@ public class Books {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found by provided id");
     }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/{id}")
     public Book updateBookByFirstName(@PathVariable (name = "id") int id, @RequestBody Book book) {
         for(Book bookEntity : this.books) {
@@ -56,7 +56,7 @@ public class Books {
 
     }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
     public Book deleteStudentByFirstName(@PathVariable(name = "id") int id) {
 

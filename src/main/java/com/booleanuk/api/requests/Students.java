@@ -23,14 +23,14 @@ public class Students {
         return student;
     }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<Student> getAll() {
         return this.students;
     }
 
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{firstName}")
     public Student getStudentByFirstName(@PathVariable String firstName) {
         for(Student student : this.students) {
@@ -42,7 +42,7 @@ public class Students {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found by provided first name");
     }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/{firstName}")
     public Student updateStudentByFirstName(@PathVariable String firstName,@RequestBody Student student) {
         for(Student stud : this.students) {
@@ -56,7 +56,7 @@ public class Students {
 
     }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{firstName}")
     public Student deleteStudentByFirstName(@PathVariable String firstName) {
 

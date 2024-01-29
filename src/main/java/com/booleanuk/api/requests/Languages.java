@@ -25,13 +25,13 @@ public class Languages {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public List<Language> getLanguages() {
         return this.languages;
     }
 
     @GetMapping("/{name}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public Language getSpecificLanguage(@PathVariable String name) {
         for(Language lang : languages) {
             if(lang.getName().equalsIgnoreCase(name)) {
@@ -58,7 +58,7 @@ public class Languages {
 
 
     @DeleteMapping("/{name}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public Language deleteLanguageByFirstName(@PathVariable String name) {
         for(Language lang : this.languages) {
             if(lang.getName().equalsIgnoreCase(name)) {
