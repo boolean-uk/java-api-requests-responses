@@ -36,4 +36,14 @@ public class Languages {
     public ResponseEntity<Language> getOne(@PathVariable(name = "name") String name) {
         return ResponseEntity.ok(this.languages.stream().filter(x->x.getName().equals(name)).findFirst().orElse(null));
     }
+
+    @PutMapping("/{name}")
+    public ResponseEntity<Language> update(@PathVariable(name = "name") String name, @RequestBody Language reqLanguage) {
+        Language language = this.languages.stream().filter(x->x.getName().equals(name)).findFirst().orElse(null);
+        if (language != null) {
+            language.setName(reqLanguage.getName());
+            return new ResponseEntity<>(language, HttpStatus.CREATED);
+        }
+        return null;
+    }
 }
