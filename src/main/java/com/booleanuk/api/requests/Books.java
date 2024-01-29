@@ -2,6 +2,7 @@ package com.booleanuk.api.requests;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,11 @@ public class Books {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Book getOneBook(@PathVariable int id) {
-        return this.books.stream().filter(b -> b.getId() == id).findFirst().orElse(null);
+        Book bookToGet = this.books.stream().filter(b -> b.getId() == id).findFirst().orElse(null);
+        if(bookToGet != null) {
+            return bookToGet;
+        }
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id do not exist");
     }
 
     @PutMapping("/{id}")
@@ -43,8 +48,9 @@ public class Books {
             bookToUpdate.setNumPages(book.getNumPages());
             bookToUpdate.setAuthor(book.getAuthor());
             bookToUpdate.setGenre(book.getGenre());
+            return bookToUpdate;
         }
-        return bookToUpdate;
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id do not exist");
     }
 
     @DeleteMapping("/{id}")
@@ -53,7 +59,8 @@ public class Books {
         Book bookToDelete = this.books.stream().filter(b -> b.getId() == id).findFirst().orElse(null);
         if (bookToDelete != null) {
             this.books.remove(bookToDelete);
+            return bookToDelete;
         }
-        return bookToDelete;
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id do not exist");
     }
 }
