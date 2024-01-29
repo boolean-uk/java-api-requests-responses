@@ -9,7 +9,7 @@ public class Book {
     private String genre;
 
     public Book(String title, int numPages, String author, String genre) {
-        this.id = idCounter++;
+        this.id = ++idCounter;
         this.title = title;
         this.numPages = numPages;
         this.author = author;

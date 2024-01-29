@@ -14,6 +14,7 @@ public class BookController {
                 "George R.R Martin", "Fantasy"));}
     };
 
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Book createBook(@RequestBody Book book){
@@ -35,4 +36,30 @@ public class BookController {
         return null;
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Book updateBook(@PathVariable int id, @RequestBody Book book ){
+        for (Book curBook : books){
+            if (curBook.getId() == id){
+                int index = this.books.indexOf(curBook);
+                this.books.get(index).setTitle(book.getTitle());
+                this.books.get(index).setAuthor(book.getAuthor());
+                this.books.get(index).setNumPages(book.getNumPages());
+                this.books.get(index).setGenre(book.getGenre());
+                return this.books.get(index);
+            }
+        }
+        return null;
+    }
+
+    @DeleteMapping("/{id}")
+    public Book deleteBook(@PathVariable int id){
+        for (Book book : books){
+            if (book.getId() == id){
+                int index = this.books.indexOf(book);
+                return this.books.remove(index);
+            }
+        }
+        return null;
+    }
 }
