@@ -1,10 +1,7 @@
 package com.booleanuk.api.requests;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +25,11 @@ public class Books {
     @GetMapping
     public List<Book> getAll() {
         return this.books;
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Book getOne(@PathVariable(name = "id") int id) {
+        return this.books.stream().filter(x->x.getId() == id).findFirst().orElse(null);
     }
 }
