@@ -20,16 +20,14 @@ public class Languages {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Language> create(@RequestBody Language language) {
         this.languages.add(language);
-
-        return ResponseEntity.ok(language);
+        return new ResponseEntity<>(language, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<Language> getAll() {
-        return this.languages;
+    public ResponseEntity<List<Language>> getAll() {
+        return ResponseEntity.ok(this.languages);
     }
 
     @GetMapping("/{name}")
@@ -49,11 +47,10 @@ public class Languages {
 
     @DeleteMapping("/{name}")
     public ResponseEntity<Language> delete(@PathVariable(name = "name") String name) {
-        for (Language language : this.languages) {
-            if (language.getName().equals(name)) {
-                this.languages.remove(language);
-                return ResponseEntity.ok(language);
-            }
+        Language language = this.languages.stream().filter(x->x.getName().equals(name)).findFirst().orElse(null);
+        if (language != null) {
+            this.languages.remove(language);
+            return ResponseEntity.ok(language);
         }
         return null;
     }
