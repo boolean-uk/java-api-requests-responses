@@ -6,9 +6,10 @@ public class Book {
     int numPage;
     String author;
     String genre;
+    private static int counter;
 
-    public Book(int id, String title, int numPage, String author, String genre) {
-        this.id = id;
+    public Book(String title, int numPage, String author, String genre) {
+        this.id = counter++;
         this.title = title;
         this.numPage = numPage;
         this.author = author;

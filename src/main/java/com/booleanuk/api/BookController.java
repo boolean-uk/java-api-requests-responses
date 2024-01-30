@@ -12,9 +12,9 @@ public class BookController {
     private int id;
     public BookController(){
         this.books = new ArrayList<>();
-        books.add(new Book(1,"Hassan1", 200,"Shitt","horror"));
-        books.add(new Book(2,"Hassan2",300 ,"Shitt","comedy"));
-        books.add(new Book(3,"Hassan3",250, "Shitt","scary"));
+        books.add(new Book("Hassan1", 200,"Shitt","horror"));
+        books.add(new Book("Hassan2",300 ,"Shitt","comedy"));
+        books.add(new Book("Hassan3",250, "Shitt","scary"));
     }
     @GetMapping
     public ArrayList<Book> getAll(){
