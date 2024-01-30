@@ -43,7 +43,7 @@ public class Books {
         for (Book book1 : this.books) {
             if (book1.getId() == id) {
                 book1.setTitle(book.getTitle());
-                book1.setNumPages(book.getId());
+                book1.setNumPages(book.getNumPages());
                 book1.setAuthor(book.getAuthor());
                 book1.setGenre(book.getGenre());
                 return ResponseEntity.ok(book1);
