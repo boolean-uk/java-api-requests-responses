@@ -37,6 +37,7 @@ public class Languages {
     }
 
     @PutMapping("/{name}")
+    @ResponseStatus(HttpStatus.CREATED)
     public Language update(@PathVariable String name, @RequestBody Language language) {
         Language updateLanguage = getLanguage(name);
         if(updateLanguage != null) {

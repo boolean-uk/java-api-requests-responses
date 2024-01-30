@@ -28,7 +28,6 @@ public class Students {
     }
 
     @GetMapping("/{firstName}")
-    @ResponseStatus(HttpStatus.OK)
     public Student getStudent(@PathVariable String firstName) {
         for(int i = 0; i < students.size(); i++) {
             if (students.get(i).getFirstName().equals(firstName)) {
@@ -51,7 +50,6 @@ public class Students {
     }
 
     @DeleteMapping("/{firstName}")
-    @ResponseStatus(HttpStatus.OK)
     public Student delete(@PathVariable String firstName) {
         Student deleteStudent = getStudent(firstName);
         if (deleteStudent != null) {
