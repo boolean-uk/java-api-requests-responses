@@ -1,0 +1,240 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Java API Responses and Requests Exercise - Extension Criteria",
+    "description": "Responses and Requests Extension Criteria",
+    "version": "0.2.3",
+    "contact": {
+      "name": "Responses and Requests"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "books"
+    }
+  ],
+  "paths": {
+    "/books": {
+      "post": {
+        "tags": [
+          "books"
+        ],
+        "summary": "Create a book",
+        "description": "Add a new book to the list",
+        "operationId": "createBook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBook"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created Book",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "books"
+        ],
+        "summary": "Get all books",
+        "description": "Get all books from the list",
+        "operationId": "getBooks",
+        "responses": {
+          "200": {
+            "description": "Get all books",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllBooks"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the Book",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "books"
+        ],
+        "summary": "Get a book",
+        "description": "Get a single book by its ID",
+        "operationId": "getSpecificBook",
+        "responses": {
+          "200": {
+            "description": "Get one book from the list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "books"
+        ],
+        "summary": "Update a book",
+        "description": "Update a books details by its ID.",
+        "operationId": "updateBook",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the book to update",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBook"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully updated a book",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "books"
+        ],
+        "summary": "Delete a book",
+        "description": "Remove a book from the list and send that book back to the client",
+        "operationId": "deleteBook",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the book to update",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the book",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateBook": {
+        "type": "object",
+        "required": [
+          "title",
+          "numPages",
+          "author",
+          "genre"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "A Game of Thrones"
+          },
+          "numPages": {
+            "type": "integer",
+            "example": 780
+          },
+          "author": {
+            "type": "string",
+            "example": "George R.R. Martin"
+          },
+          "genre": {
+            "type": "string",
+            "example": "Fantasy"
+          }
+        }
+      },
+      "Book": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "A Game of Thrones"
+          },
+          "numPages": {
+            "type": "integer",
+            "example": 780
+          },
+          "author": {
+            "type": "string",
+            "example": "George R.R. Martin"
+          },
+          "genre": {
+            "type": "string",
+            "example": "Fantasy"
+          }
+        }
+      },
+      "AllBooks": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Book"
+        }
+      }
+    }
+  }
+}
