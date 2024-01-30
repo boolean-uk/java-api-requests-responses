@@ -1,7 +1,7 @@
 package com.booleanuk.api.requests;
 
 public class Book {
-    private static int idCounter;
+    private static int idCounter = 1;
     private int id;
     private String title;
     private int numPages;
@@ -9,14 +9,18 @@ public class Book {
     private String genre;
 
     public Book(String title, int numPages, String author, String genre) {
-        this.id = ++idCounter;
+        this.id = idCounter;
         this.title = title;
         this.numPages = numPages;
         this.author = author;
         this.genre = genre;
+        idCounter++;
     }
 
-    public Book(){};
+    public Book(){
+        this.id = idCounter;
+        idCounter++;
+    };
 
     public int getId() {
         return id;
