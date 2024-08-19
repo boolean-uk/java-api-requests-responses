@@ -26,4 +26,30 @@ public class Students {
     public List<Student> getAll() {
         return this.students;
     }
+    @GetMapping("{id}")
+    public Student getOneStudent(@PathVariable int id) {
+        if(id < this.students.size()) {
+            return this.students.get(id);
+        }
+        return null;
+    }
+
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Student update(@PathVariable int id, @RequestBody Student student) {
+        if(id < this.students.size()) {
+            this.students.get(id).setFirstName(student.getFirstName());
+            this.students.get(id).setLastName(student.getLastName());
+            return this.students.get(id);
+        }
+        return null;
+    }
+
+    @DeleteMapping("{id}")
+    public Student delete(@PathVariable int id) {
+        if(id < this.students.size()) {
+            return this.students.remove(id);
+        }
+        return null;
+    }
 }
