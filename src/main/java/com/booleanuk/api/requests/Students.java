@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("students")
 public class Students {
-    private List<Student> students = new ArrayList<>(){{
+    private final List<Student> students = new ArrayList<>(){{
         add(new Student("Nathan", "King"));
         add(new Student("Dave", "Ames"));
     }};
@@ -23,7 +23,39 @@ public class Students {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<Student> getAll() {
         return this.students;
+    }
+
+    @GetMapping("/{firstName}")
+    @ResponseStatus(HttpStatus.OK)
+    public Student get(@PathVariable String firstName) {
+        return this.students.stream()
+                .filter(student -> student.getFirstName().equals(firstName))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @PutMapping("{firstName}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Student update(@PathVariable String firstName, @RequestBody Student student) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getFirstName().equals(firstName)) {
+                students.set(i, student);
+                return student;            }
+        }
+        return null;
+    }
+
+    @DeleteMapping("{firstName}")
+    @ResponseStatus(HttpStatus.OK)
+    public Student remove(@PathVariable String firstName) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getFirstName().equals(firstName)) {
+                return students.remove(i);
+            }
+        }
+        return null;
     }
 }
