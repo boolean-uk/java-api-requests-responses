@@ -7,6 +7,8 @@ public class Language {
         this.name = name;
     }
 
+    public Language() {}
+
     public String getName() {
         return name;
     }
