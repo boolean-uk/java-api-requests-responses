@@ -1,5 +1,8 @@
 package com.booleanuk.api.requests;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 class Student {
     private String firstName;
     private String lastName;
@@ -16,4 +19,5 @@ class Student {
     public String getLastName() {
         return lastName;
     }
+
 }
