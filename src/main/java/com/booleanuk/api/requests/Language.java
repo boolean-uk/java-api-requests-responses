@@ -1,5 +1,10 @@
 package com.booleanuk.api.requests;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Language {
     private String name;
 
@@ -7,7 +12,6 @@ public class Language {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
+    public Language(){}
+
 }
