@@ -7,6 +7,14 @@ public class Language {
         this.name = name;
     }
 
+    public Language() {
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
