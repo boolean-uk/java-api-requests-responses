@@ -1,19 +1,15 @@
 package com.booleanuk.api.requests;
 
-class Student {
-    private String firstName;
-    private String lastName;
+import java.util.UUID;
+
+public class Student {
+    public String firstName;
+    public String lastName;
+
+    public Student() {}
 
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 }
