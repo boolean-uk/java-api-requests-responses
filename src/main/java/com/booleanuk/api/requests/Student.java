@@ -16,4 +16,12 @@ class Student {
     public String getLastName() {
         return lastName;
     }
+
+    public void setFirstName(String name) {
+        this.firstName = name;
+    }
+
+    public void setLastName(String name) {
+        this.lastName = name;
+    }
 }
