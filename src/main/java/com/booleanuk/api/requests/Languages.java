@@ -43,7 +43,7 @@ public class Languages {
     }
     @DeleteMapping("/{name}")
     public Language deleteLanguage(@PathVariable String name) {
-        Language foundLanguage = languages.stream().filter(language -> language.getName().equals(name))
+        Language foundLanguage = languages.stream().filter(language -> language.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
         if (foundLanguage != null) {

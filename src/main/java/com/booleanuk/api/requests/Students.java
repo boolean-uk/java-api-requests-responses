@@ -32,7 +32,7 @@ public class Students {
     public Student getSpecificStudent(@PathVariable String firstName) {
 
         Student foundStudent = students.stream()
-                .filter(student -> student.getFirstName().equals(firstName))
+                .filter(student -> student.getFirstName().equalsIgnoreCase(firstName))
                 .findFirst()
                 .orElse(null);
         return foundStudent;
@@ -41,7 +41,7 @@ public class Students {
     public Student updateStudent(@PathVariable String firstName, @RequestBody Student student) {
 
         Student foundStudent = students.stream()
-                .filter(s -> s.getFirstName().equals(firstName))
+                .filter(s -> s.getFirstName().equalsIgnoreCase(firstName))
                 .findFirst()
                 .orElse(null);
         if (foundStudent != null) {
@@ -53,7 +53,7 @@ public class Students {
     @DeleteMapping("/{firstName}")
     public Student deleteStudent(@PathVariable String firstName) {
         Student foundStudent = students.stream()
-                .filter(s -> s.getFirstName().equals(firstName))
+                .filter(s -> s.getFirstName().equalsIgnoreCase(firstName))
                 .findFirst()
                 .orElse(null);
         if (foundStudent != null) {
