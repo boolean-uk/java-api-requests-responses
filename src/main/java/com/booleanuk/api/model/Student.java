@@ -1,6 +1,6 @@
-package com.booleanuk.api.requests;
+package com.booleanuk.api.model;
 
-class Student {
+public class Student {
     private String firstName;
     private String lastName;
 

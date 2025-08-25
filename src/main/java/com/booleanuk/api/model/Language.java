@@ -1,4 +1,4 @@
-package com.booleanuk.api.requests;
+package com.booleanuk.api.model;
 
 public class Language {
     private String name;

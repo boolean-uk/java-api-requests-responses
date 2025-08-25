@@ -1,44 +1,26 @@
-package com.booleanuk.api.requests;
+package com.booleanuk.api.service;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import com.booleanuk.api.model.Student;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-@RequestMapping("students")
-public class Students {
-    private List<Student> students = new ArrayList<>() {{
-        add(new Student("Nathan", "King"));
-        add(new Student("Dave", "Ames"));
-    }};
+@Service
+public class StudentService {
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Student create(@RequestBody Student student) {
-        this.students.add(student);
-
-        return student;
-    }
-
-    @GetMapping
-    public List<Student> getStudents() {
-
-        return this.students;
-    }
-
-    @GetMapping("/{firstName}")
-    public Student getSpecificStudent(@PathVariable String firstName) {
-
+        private List<Student> students = new ArrayList<>() {{
+            add(new Student("Nathan", "King"));
+            add(new Student("Dave", "Ames"));
+        }};
+    public Student getSpecificStudent(String firstName) {
         Student foundStudent = students.stream()
                 .filter(student -> student.getFirstName().equalsIgnoreCase(firstName))
                 .findFirst()
                 .orElse(null);
         return foundStudent;
     }
-    @PutMapping("/{firstName}")
-    public Student updateStudent(@PathVariable String firstName, @RequestBody Student student) {
+    public Student updateStudent(String firstName, Student student) {
 
         Student foundStudent = students.stream()
                 .filter(s -> s.getFirstName().equalsIgnoreCase(firstName))
@@ -50,8 +32,7 @@ public class Students {
         }
         return foundStudent;
     }
-    @DeleteMapping("/{firstName}")
-    public Student deleteStudent(@PathVariable String firstName) {
+    public Student deleteStudent(String firstName) {
         Student foundStudent = students.stream()
                 .filter(s -> s.getFirstName().equalsIgnoreCase(firstName))
                 .findFirst()
@@ -60,5 +41,9 @@ public class Students {
             students.remove(foundStudent);
         }
         return foundStudent;
+    }
+
+    public List<Student> getStudents() {
+        return students;
     }
 }
